@@ -1,4 +1,4 @@
-name: Test CI
+name: Node CI
 
 on:
   [push, pull_request]
