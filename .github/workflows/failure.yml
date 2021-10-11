@@ -12,4 +12,4 @@ jobs:
         uses: RandellDawson/fail-with-these-labels-action@master
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          labels-to-fail: "status: blocked,status: i18n review required"
+          labels-to-fail: 'status: blocked,status: i18n review required'
