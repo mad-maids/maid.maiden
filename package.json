@@ -1,70 +1,99 @@
 {
-  "name": "maiden",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "name": "maid.maiden",
+  "version": "1.0.0",
+  "description": "The API for third party services",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mad-maids/maid.maiden.git"
+  },
+  "author": {
+    "email": "uwussimo@icloud.com",
+    "name": "mad-maids",
+    "url": "https://maid.uz"
+  },
+  "contributors": [
+    {
+      "name": "UwUssimo Robinson",
+      "email": "uwussimo@icloud.com",
+      "url": "https://github.com/uwussimo"
+    }
+  ],
+  "license": "AGPL-3.0",
   "private": true,
-  "license": "UNLICENSED",
   "scripts": {
-    "prebuild": "rimraf dist",
-    "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
-    "start:dev": "nest start --watch",
-    "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "start": "forever start .",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "dev": "nodemon",
+    "format": "prettier --write .",
+    "lint": "eslint . --ext .js,.ts && prettier --check ."
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/mad-maids/maid.maiden/issues"
+  },
+  "homepage": "https://api.n.maid.uz/",
+  "devDependencies": {
+    "@types/keyv": "^3.1.1",
+    "@types/koa": "^2.11.6",
+    "@types/koa-helmet": "^6.0.1",
+    "@types/koa-router": "^7.4.1",
+    "@types/mime-types": "^2.1.0",
+    "@types/sharp": "^0.26.1",
+    "@typescript-eslint/eslint-plugin": "^4.10.0",
+    "@typescript-eslint/parser": "^4.10.0",
+    "eslint": "^7.15.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.6",
+    "prettier": "^2.2.1",
+    "typescript": "^4.1.3"
   },
   "dependencies": {
-    "@nestjs/common": "^8.0.0",
-    "@nestjs/core": "^8.0.0",
-    "@nestjs/platform-express": "^8.0.0",
-    "reflect-metadata": "^0.1.13",
-    "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0"
+    "@koa/cors": "^3.1.0",
+    "@sentry/node": "^6.2.3",
+    "@sentry/tracing": "^6.2.3",
+    "@types/koa__cors": "^3.0.2",
+    "chalk": "^4.1.0",
+    "file-loader": "^6.2.0",
+    "forever": "^4.0.1",
+    "gulp-cli": "^2.3.0",
+    "json-loader": "^0.5.7",
+    "keyv": "^4.0.3",
+    "koa": "^2.13.0",
+    "koa-body": "^4.2.0",
+    "koa-helmet": "^6.0.0",
+    "koa-router": "^10.0.0",
+    "mime-types": "^2.1.27",
+    "sharp": "^0.26.3"
   },
-  "devDependencies": {
-    "@nestjs/cli": "^8.0.0",
-    "@nestjs/schematics": "^8.0.0",
-    "@nestjs/testing": "^8.0.0",
-    "@types/express": "^4.17.13",
-    "@types/jest": "^27.0.1",
-    "@types/node": "^16.0.0",
-    "@types/supertest": "^2.0.11",
-    "@typescript-eslint/eslint-plugin": "^4.28.2",
-    "@typescript-eslint/parser": "^4.28.2",
-    "eslint": "^7.30.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "jest": "^27.0.6",
-    "prettier": "^2.3.2",
-    "supertest": "^6.1.3",
-    "ts-jest": "^27.0.3",
-    "ts-loader": "^9.2.3",
-    "ts-node": "^10.0.0",
-    "tsconfig-paths": "^3.10.1",
-    "typescript": "^4.3.5"
+  "prettier": {
+    "endOfLine": "lf",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "all"
   },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testRegex": ".*\\.spec\\.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true,
+      "es6": true
     },
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 12,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "@typescript-eslint"
     ],
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "extends": [
+      "eslint:recommended",
+      "prettier"
+    ]
   }
 }
