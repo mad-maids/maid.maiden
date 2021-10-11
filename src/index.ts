@@ -4,7 +4,7 @@ import helmet from 'koa-helmet';
 import cors from '@koa/cors';
 import chalk from 'chalk';
 
-import { bot } from "./modules/telegram"
+import { bot } from './modules/telegram';
 import router from './routes';
 
 (async () => {
@@ -15,12 +15,13 @@ import router from './routes';
   app.use(helmet());
   app.use(cors());
 
-  await bot.telegram.setWebhook('https://maidens.herokuapp.com/')
-  app.use((ctx, next) => ctx.method === 'POST' || ctx.url === '/telegram'
-    // @ts-ignore
-    ? bot.handleUpdate(ctx.request.body, ctx.response)
-    : next()
-  )
+  await bot.telegram.setWebhook('https://maidens.herokuapp.com/');
+  app.use((ctx, next) =>
+    ctx.method === 'POST' || ctx.url === '/telegram'
+      ? // @ts-ignore
+        bot.handleUpdate(ctx.request.body, ctx.response)
+      : next(),
+  );
   app.use(router.routes());
 
   app.listen(port, () => {
