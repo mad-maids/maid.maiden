@@ -23,6 +23,7 @@
   "private": true,
   "scripts": {
     "start": "node .",
+    "dock": "forever start .",
     "build": "tsc",
     "watch": "tsc -w",
     "dev": "nodemon",

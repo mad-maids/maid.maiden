@@ -3,6 +3,6 @@ version: '3'
 services:
   app:
     build: ./
-    container_name: genshin_api
+    container_name: maiden
     ports:
       - '5000:5000'
