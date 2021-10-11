@@ -1,5 +1,11 @@
-import Router from "koa-router";
-import { getAvailableTimetables, getAvailableIntranet, getTimetable, getIntranet, getGroups } from "../modules/filesystem";
+import Router from 'koa-router';
+import {
+  getAvailableTimetables,
+  getAvailableIntranet,
+  getTimetable,
+  getIntranet,
+  getGroups,
+} from '../modules/filesystem';
 
 const router = new Router();
 

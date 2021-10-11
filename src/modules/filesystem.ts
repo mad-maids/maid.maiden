@@ -2,7 +2,7 @@ import { timetableDirectory, intranetDirectory } from '../config';
 import Keyv from 'keyv';
 import { promises as fs, existsSync } from 'fs';
 import path from 'path';
-import chalk from "chalk";
+import chalk from 'chalk';
 
 const cache = new Keyv();
 
@@ -12,12 +12,12 @@ export async function getGroups(app: string): Promise<string[]> {
 
   const direct = async (): Promise<any> => {
     switch (app) {
-    case "timetable":
-      return timetableDirectory
-    case "intranet":
-      return intranetDirectory
+      case 'timetable':
+        return timetableDirectory;
+      case 'intranet':
+        return intranetDirectory;
     }
-  }
+  };
 
   const types = await fs.readdir((await direct())(''));
 
@@ -37,7 +37,8 @@ export async function getAvailableTimetables(
   if (!exists) throw new Error(`Type ${type} not found`);
 
   const entities = await fs.readdir(timetableDirectory(type));
-  for (const entity in entities) entities[entity] = entities[entity].replace('.json', '')
+  for (const entity in entities)
+    entities[entity] = entities[entity].replace('.json', '');
 
   await cache.set(`timetable-${type}`, entities);
   console.log(
@@ -48,10 +49,7 @@ export async function getAvailableTimetables(
   return entities;
 }
 
-export async function getTimetable(
-  type: string,
-  id: string
-): Promise<any> {
+export async function getTimetable(type: string, id: string): Promise<any> {
   const cacheId = `timetable-${type}-${id}`.toLowerCase();
   const found = await cache.get(cacheId);
   if (found) return found;
@@ -102,7 +100,8 @@ export async function getAvailableIntranet(
   if (!exists) throw new Error(`Type ${type} not found`);
 
   const entities = await fs.readdir(intranetDirectory(type));
-  for (const entity in entities) entities[entity] = entities[entity].replace('.json', '')
+  for (const entity in entities)
+    entities[entity] = entities[entity].replace('.json', '');
 
   await cache.set(`intranet-${type}`, entities);
   console.log(
@@ -113,17 +112,12 @@ export async function getAvailableIntranet(
   return entities;
 }
 
-export async function getIntranet(
-  type: string,
-  id: string
-): Promise<any> {
+export async function getIntranet(type: string, id: string): Promise<any> {
   const cacheId = `intranet-${type}-${id}`.toLowerCase();
   const found = await cache.get(cacheId);
   if (found) return found;
 
-  const filePath = path
-    .join(intranetDirectory(type), `${id}.json`)
-    .normalize();
+  const filePath = path.join(intranetDirectory(type), `${id}.json`).normalize();
 
   const exists = existsSync(filePath);
   if (!exists) {
