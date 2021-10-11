@@ -9,6 +9,13 @@ import {
 
 const router = new Router();
 
+router.get('/', async (ctx) => {
+  ctx.body = {
+    intranet: 'http://api.n.maid.uz/intranet/',
+    timetable: 'http://api.n.maid.uz/timetable/',
+  };
+});
+
 router.get('/timetable', async (ctx) => {
   const types = await getGroups('timetable');
   ctx.body = {
