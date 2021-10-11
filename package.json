@@ -27,7 +27,7 @@
     "build": "tsc",
     "watch": "tsc -w",
     "dev": "nodemon",
-    "format": "prettier --write .",
+    "format": "prettier --write --check .",
     "lint": "eslint . --ext .js,.ts && prettier --check ."
   },
   "engines": {
