@@ -1,9 +1,7 @@
 name: Test CI
 
 on:
-  push:
-  pull_request:
-    types: [opened, reopened, labeled, unlabeled]
+  [push, pull_request]
 
 jobs:
   web:
