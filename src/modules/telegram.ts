@@ -2,62 +2,61 @@ import { channel, token } from '../config';
 import { Telegraf, Composer, Scenes, session } from 'telegraf';
 
 interface Session extends Scenes.WizardSessionData {
-  // will be available under `ctx.scene.session.myWizardSessionProp`
-  messages: string[]
-  photosh: string[]
+  messages: string[];
+  photos: string[];
 }
 
-type User = Scenes.WizardContext<Session>
+type User = Scenes.WizardContext<Session>;
 
-const stepHandler = new Composer<User>()
+const stepHandler = new Composer<User>();
 stepHandler.on('text', async (ctx) => {
-  ctx.scene.session.messages.push(ctx.message.text)
-})
+  ctx.scene.session.messages.push(ctx.message.text);
+});
 stepHandler.action('next', async (ctx) => {
-  await ctx.reply('Step 2. Via inline button')
-  return ctx.wizard.next()
-})
+  await ctx.reply('Step 2. Via inline button');
+  return ctx.wizard.next();
+});
 stepHandler.command('next', async (ctx) => {
-  await ctx.reply('Step 2. Via command')
-  return ctx.wizard.next()
-})
+  await ctx.reply('Step 2. Via command');
+  return ctx.wizard.next();
+});
 stepHandler.use((ctx) =>
-  ctx.replyWithMarkdown('Press `Next` button or type /next')
-)
+  ctx.replyWithMarkdown('Press `Next` button or type /next'),
+);
 
 const wizard = new Scenes.WizardScene(
   'super-wizard',
   async (ctx) => {
-    await ctx.reply(
-      'Step 1'
-    )
-    return ctx.wizard.next()
+    await ctx.reply('Step 1');
+    return ctx.wizard.next();
   },
   stepHandler,
   async (ctx) => {
     const responseText = [
       'Step 3.',
-      `Your random myWizardSessionProp is ${ctx.scene.session.messages.join(' ')}`,
-    ].join('\n')
-    await ctx.reply(responseText)
-    return ctx.wizard.next()
+      `Your messages are ${ctx.scene.session.messages.join(
+        ' ',
+      )}`,
+    ].join('\n');
+    await ctx.reply(responseText);
+    return ctx.wizard.next();
   },
   async (ctx) => {
-    await ctx.reply('Step 4')
-    return ctx.wizard.next()
+    await ctx.reply('Step 4');
+    return ctx.wizard.next();
   },
   async (ctx) => {
-    await ctx.reply('Done')
-    return await ctx.scene.leave()
-  }
-)
+    await ctx.reply('Done');
+    return await ctx.scene.leave();
+  },
+);
 
-const bot = new Telegraf<User>(token)
+const bot = new Telegraf<User>(token);
 const stage = new Scenes.Stage<User>([wizard], {
   default: 'wizard',
-})
-bot.use(session())
-bot.use(stage.middleware())
+});
+bot.use(session());
+bot.use(stage.middleware());
 
 export const sendMessage = async (text: string): Promise<void> => {
   await bot.telegram
