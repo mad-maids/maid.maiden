@@ -25,7 +25,7 @@ stepHandler.use((ctx) =>
 );
 
 const wizard = new Scenes.WizardScene(
-  'super-wizard',
+  'wizard',
   async (ctx) => {
     await ctx.reply('Step 1');
     return ctx.wizard.next();
