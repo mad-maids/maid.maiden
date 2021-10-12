@@ -34,7 +34,7 @@ Send message to the channel anonymously.
 ### Send Photo `(beta)`
 
 - **Url:** `/confession/image`
-- **Type:** `POST`
+- **Type:** `GET`
 - **Required:** `content: URL | FileID`, `message: string` as headers
 
 Send photo to the channel anonymously.
