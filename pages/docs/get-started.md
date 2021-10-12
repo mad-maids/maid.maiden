@@ -1,7 +1,7 @@
 ---
 title: Get Started
 authors:
-  - uwussimi
+  - uwussimo
 ---
 
 # Get Started
