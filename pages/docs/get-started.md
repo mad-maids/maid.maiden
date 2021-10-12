@@ -25,8 +25,8 @@ If you're using Deno, then (ordered in priority):
 
 If you're using Python, then (ordered in priority):
 
-- Requests
-- Urrlib
+- Requests & Json
+- Urrlib & Json
 
 For the rest programming languages or technologies, try to stick to the native solution for better performance.
 
