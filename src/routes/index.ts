@@ -157,7 +157,7 @@ router.get('/intranet/:type/:id', async (ctx) => {
 router.get('/confession', async (ctx) => {
   ctx.body = {
     text: '32+ characters long message',
-    image: '{type} and {content} as body',
+    image: '{content} and {message} as headers',
   };
 });
 
