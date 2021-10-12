@@ -1,29 +1,29 @@
 ![Aleph.js](https://raw.githubusercontent.com/alephjs/aleph.js/master/.github/poster.svg)
 
-# Alephjs.org
+# Maiden
 
-The website of **Aleph.js**, this website is built with Aleph.js and
-automatically deploys to [Vercel](https://vercel.com).
+Rest API server for educational purposes! A server which was built with Deno
+and Node. Documented and deployed with Aleph.js on Deno via Vercel
 
-> https://alephjs.org
+> https://api.maid.uz
 
 ## System Requirements
 
+### Client
 - [Deno](https://deno.land/) 1.13+
 - [Aleph.js](https://deno.land/x/aleph) 0.3.0+
 - [VS Code](https://code.visualstudio.com/) with
   [deno extension](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno)
   (recommended)
 
-## Development Setup
+### Server: Node
+- [Node](https://nodejs.org/) 1.12+
+- [PNPM](https://pnpm.io/) 6+
+- [JetBrains Webstorm](https://www.jetbrains.com/webstorm/) 2020+
 
-```bash
-# start the website in `development` mode
-aleph dev
-
-# start the website in `production` mode
-aleph start
-
-# build the website to a stact site
-aleph build
-```
+### Server: Deno
+- [Deno](https://deno.land/) 1.13+
+- [Oak.js](https://deno.land/x/oak) 9.0+
+- [VS Code](https://code.visualstudio.com/) with
+  [deno extension](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno)
+  (recommended)
