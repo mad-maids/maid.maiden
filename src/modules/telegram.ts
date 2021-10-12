@@ -1,34 +1,39 @@
 import { channel, token } from '../config';
-import { Telegraf, Scenes, Markup, session, Composer } from 'telegraf';
+import { Telegraf, Scenes, session, Composer, Context } from 'telegraf';
 
 const bot = new Telegraf(token);
 
-const stepHandler = new Composer<Scenes.WizardContext>();
-stepHandler.action('next', async (ctx) => {
-  await ctx.reply('Step 2. Via inline button');
+interface WizardSession extends Scenes.WizardSessionData {
+  message: string[],
+  photos: string[]
+}
+
+interface WizardContext extends Context {
+  scene: Scenes.SceneContextScene<WizardContext, WizardSession>
+  wizard: Scenes.WizardContextWizard<WizardContext>
+}
+
+const messageHandler = new Composer<WizardContext>();
+messageHandler.on('text', async (ctx) => {
+  ctx.scene.session.message.push(ctx.message.text)
+})
+messageHandler.command('next', async (ctx) => {
+  await ctx.reply('Noice!');
   return ctx.wizard.next();
 });
-stepHandler.command('next', async (ctx) => {
-  await ctx.reply('Step 2. Via command');
-  return ctx.wizard.next();
-});
-stepHandler.use((ctx) =>
-  ctx.replyWithMarkdown('Press `Next` button or type /next'),
+messageHandler.use((ctx) =>
+  ctx.replyWithMarkdown('Press `Next` button or type /next when you\'re done!' ),
 );
 
-const superWizard = new Scenes.WizardScene(
-  'super-wizard',
+const wizard = new Scenes.WizardScene(
+  'wizard',
   async (ctx) => {
     await ctx.reply(
-      'Step 1',
-      Markup.inlineKeyboard([
-        Markup.button.url('❤️', 'http://telegraf.js.org'),
-        Markup.button.callback('➡️ Next', 'next'),
-      ]),
+      'Hello, friend! Start typing '
     );
     return ctx.wizard.next();
   },
-  stepHandler,
+  messageHandler,
   async (ctx) => {
     await ctx.reply('Step 3');
     return ctx.wizard.next();
@@ -39,12 +44,15 @@ const superWizard = new Scenes.WizardScene(
   },
   async (ctx) => {
     await ctx.reply('Done');
+    for (const message of ctx.scene.session.message) {
+      await ctx.reply(message)
+    }
     return await ctx.scene.leave();
   },
 );
 
-const stage = new Scenes.Stage<Scenes.WizardContext>([superWizard], {
-  default: 'super-wizard',
+const stage = new Scenes.Stage<WizardContext>([wizard], {
+  default: 'wizard',
 });
 bot.use(session());
 // @ts-ignore
