@@ -15,7 +15,7 @@ import router from './routes';
   app.use(helmet());
   app.use(cors());
 
-  await bot.telegram.setWebhook('https://maidens.herokuapp.com/');
+  await bot.telegram.setWebhook('https://maidens.herokuapp.com/telegram');
   app.use((ctx, next) =>
     ctx.method === 'POST' || ctx.url === '/telegram'
       ? // @ts-ignore
