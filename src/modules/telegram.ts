@@ -5,14 +5,15 @@ import { Telegraf } from 'telegraf';
 const bot = new Telegraf(token);
 
 export const sendMessage = async (text: string): Promise<void> => {
-  if (text.length > 32) await bot.telegram
-    .sendMessage(parseInt(channel), text, {
-      parse_mode: 'HTML',
-    })
-    .then((message) => {
-      return message.message_id;
-    });
-  else throw Error("Message should be more than 32 characters long!")
+  if (text.length > 32)
+    await bot.telegram
+      .sendMessage(parseInt(channel), text, {
+        parse_mode: 'HTML',
+      })
+      .then((message) => {
+        return message.message_id;
+      });
+  else throw Error('Message should be more than 32 characters long!');
 };
 
 export const sendPicture = async (
@@ -47,9 +48,9 @@ export const sendPicture = async (
           parse_mode: 'HTML',
         },
       );
-      break
+      break;
     default:
-      throw Error("Content type not specified")
+      throw Error('Content type not specified');
   }
 };
 
