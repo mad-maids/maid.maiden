@@ -6,7 +6,6 @@ import chalk from 'chalk';
 
 import { bot } from './modules/telegram';
 import router from './routes';
-import { env } from './config';
 
 (async () => {
   const app = new Koa();
