@@ -15,17 +15,12 @@ import router from './routes';
   app.use(helmet());
   app.use(cors());
 
-  try {
-    await bot.telegram.setWebhook('https://maidens.herokuapp.com/telegram');
-    app.use((ctx, next) =>
-      ctx.method === 'POST' || ctx.url === '/telegram'
-        ? // @ts-ignore
-          bot.handleUpdate(ctx.request.body, ctx.response)
-        : next(),
-    );
-  } catch (e) {
-    console.log(e);
-  }
+  app.use((ctx, next) =>
+    ctx.method === 'POST' || ctx.url === '/telegram'
+      ? // @ts-ignore
+        bot.handleUpdate(ctx.request.body, ctx.response)
+      : next(),
+  );
 
   app.use(router.routes());
 
