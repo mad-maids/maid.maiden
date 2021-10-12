@@ -5,15 +5,14 @@ import { Telegraf } from 'telegraf';
 const bot = new Telegraf(token);
 
 export const sendMessage = async (text: string): Promise<void> => {
-  console.log(text.length)
-  if (text.length > 32) {await bot.telegram
+  if (text.length > 32) await bot.telegram
     .sendMessage(parseInt(channel), text, {
       parse_mode: 'HTML',
     })
     .then((message) => {
       return message.message_id;
-    });}
-  else {throw Error("Message should be more than 32 characters long!")}
+    });
+  else throw Error("Message should be more than 32 characters long!")
 };
 
 export const sendPicture = async (
