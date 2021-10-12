@@ -9,10 +9,6 @@ interface Session extends Scenes.WizardSessionData {
 type User = Scenes.WizardContext<Session>;
 
 const stepHandler = new Composer<User>();
-stepHandler.action('next', async (ctx) => {
-  await ctx.reply('Step 2. Via inline button');
-  return ctx.wizard.next();
-});
 stepHandler.command('next', async (ctx) => {
   await ctx.reply('Step 2. Via command');
   return ctx.wizard.next();
