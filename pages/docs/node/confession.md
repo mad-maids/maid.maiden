@@ -21,11 +21,13 @@ Feel free to add your own client here...
 
 Send message to the channel anonymously.
 
-**@returns: `/confession/text/Lorem ipsum dolor sit amet, consectetur adipiscing elit.`**
+**@returns:
+`/confession/text/Lorem ipsum dolor sit amet, consectetur adipiscing elit.`**
+
 ```json
 {
-  status: "success",
-  message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  "status": "success",
+  "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 }
 ```
 
@@ -33,6 +35,7 @@ Send message to the channel anonymously.
 
 - **Url:** `/confession/image`
 - **Type:** `POST`
-- **Required:** body of `type: "buffer", "url", "animation"` || `content: Buffer, URL<Photo, Animation>`
+- **Required:** body of `type: "buffer", "url", "animation"` ||
+  `content: Buffer, URL<Photo, Animation>`
 
 Send photo to the channel anonymously.

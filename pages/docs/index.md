@@ -6,8 +6,8 @@ authors:
 
 # Maiden
 
-**Maiden** (or **Maid API**) is a
-server side api created for third party applications using REST technologies.
+**Maiden** (or **Maid API**) is a server side api created for third party
+applications using REST technologies.
 
 > Brought to you by Mad Maids
 
@@ -28,7 +28,8 @@ this API using 2 platforms namely [Denoland] and [Node.js].
 
 ## Status (Developments)
 
-Currently in **beta**, being actively developed and tested. Use on your own risk!
+Currently in **beta**, being actively developed and tested. Use on your own
+risk!
 
 ## License
 

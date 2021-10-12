@@ -14,6 +14,7 @@ authors:
 Get the list of available faculties.
 
 **@returns: `/intranet`**
+
 ```json
 {
   "types": [
@@ -32,6 +33,7 @@ Get the list of available faculties.
 Get the list of available groups that has timetable stored on our database.
 
 **@returns: `/intranet/5BIS`**
+
 ```json
 [
   "5BIS1",
@@ -48,9 +50,11 @@ Get the list of available groups that has timetable stored on our database.
 - **Url:** `/timetable/:type/all`
 - **Type:** `GET`
 
-Get the list of all timetables of all available groups that has timetable stored on our database.
+Get the list of all timetables of all available groups that has timetable stored
+on our database.
 
 **@returns: `/intranet/5BIS/all`**
+
 ```json
 [
   {
@@ -98,6 +102,7 @@ Get the list of all timetables of all available groups that has timetable stored
 Get timetable of specific group.
 
 **@returns: `/intranet/5BIS/5BIS1`**
+
 ```json
 [
   {

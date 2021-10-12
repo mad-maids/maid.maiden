@@ -14,6 +14,7 @@ authors:
 Get the list of available faculties.
 
 **@returns: `/intranet`**
+
 ```json
 {
   "types": [
@@ -32,6 +33,7 @@ Get the list of available faculties.
 Get the list of available modules stored on our database.
 
 **@returns: `/intranet/5BIS`**
+
 ```json
 [
   "dsd",
@@ -49,6 +51,7 @@ Get the list of available modules stored on our database.
 Get the list of all modules contents for a specific faculty.
 
 **@returns: `/intranet/5BIS/all`**
+
 ```json
 [
   {
@@ -79,6 +82,7 @@ Get the list of all modules contents for a specific faculty.
 Get intranet of specific module.
 
 **@returns: `/intranet/5BIS/dsd`**
+
 ```json
 {
   "Useful": [
