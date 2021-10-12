@@ -469,7 +469,7 @@
           color: #000;
         }
         &:hover:after {
-          content: ' 👍🏿'
+          content: ' 👍🏻'
         }
       }
     }
