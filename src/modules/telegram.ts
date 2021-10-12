@@ -1,8 +1,8 @@
 import { Telegraf } from 'telegraf';
-import { env } from '../config';
 
-// @ts-ignore
-const bot = new Telegraf(process.env.TOKEN);
+const channel = process.env.CHANNEL || "-1001785784747"
+const token = process.env.TOKEN || "2059294408:AAFZrRNbMqxIX6dZ74vnbdCHxq4lQlc6U6I"
+const bot = new Telegraf(token);
 
 bot.start(async (ctx) => {
   await ctx.replyWithHTML('Hello!')
@@ -10,8 +10,7 @@ bot.start(async (ctx) => {
 
 export const sendMessage = async (text: string): Promise<void> => {
   await bot.telegram
-    // @ts-ignore
-    .sendMessage(parseInt(env.CHANNEL), text, {
+    .sendMessage(parseInt(channel), text, {
       parse_mode: 'HTML',
     })
     .then((message) => {
