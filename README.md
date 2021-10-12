@@ -1,5 +1,3 @@
-![Aleph.js](https://raw.githubusercontent.com/alephjs/aleph.js/master/.github/poster.svg)
-
 # Maiden
 
 Rest API server for educational purposes! A server which was built with Deno
