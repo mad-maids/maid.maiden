@@ -34,9 +34,7 @@ const wizard = new Scenes.WizardScene(
   async (ctx) => {
     const responseText = [
       'Step 3.',
-      `Your messages are ${ctx.scene.session.messages.join(
-        ' ',
-      )}`,
+      `Your messages are ${ctx.scene.session.messages.join(' ')}`,
     ].join('\n');
     await ctx.reply(responseText);
     return ctx.wizard.next();
