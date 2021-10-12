@@ -24,6 +24,7 @@ const wizard = new Scenes.WizardScene(
   'wizard',
   async (ctx) => {
     await ctx.reply('Step 1');
+    console.log(typeof ctx.scene.session.messages)
     return ctx.wizard.next();
   },
   stepHandler,
