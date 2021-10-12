@@ -6,6 +6,7 @@ import chalk from 'chalk';
 
 import { bot } from './modules/telegram';
 import router from './routes';
+import { env } from './config';
 
 (async () => {
   const app = new Koa();
@@ -15,13 +16,18 @@ import router from './routes';
   app.use(helmet());
   app.use(cors());
 
-  await bot.telegram.setWebhook('https://maidens.herokuapp.com/telegram');
-  app.use((ctx, next) =>
-    ctx.method === 'POST' || ctx.url === '/telegram'
-      ? // @ts-ignore
-        bot.handleUpdate(ctx.request.body, ctx.response)
-      : next(),
-  );
+  try {
+    await bot.telegram.setWebhook('https://maidens.herokuapp.com/telegram');
+    app.use((ctx, next) =>
+      ctx.method === 'POST' || ctx.url === '/telegram'
+        ? // @ts-ignore
+          bot.handleUpdate(ctx.request.body, ctx.response)
+        : next(),
+    );
+  } catch (e) {
+    console.log(e);
+  }
+
   app.use(router.routes());
 
   app.listen(port, () => {
