@@ -42,6 +42,7 @@
     "@types/koa": "^2.11.6",
     "@types/koa-helmet": "^6.0.1",
     "@types/koa-router": "^7.4.1",
+    "@types/redis": "^2.8.32",
     "@typescript-eslint/eslint-plugin": "^4.10.0",
     "@typescript-eslint/parser": "^4.10.0",
     "eslint": "^7.15.0",
@@ -64,6 +65,8 @@
     "koa-body": "^4.2.0",
     "koa-helmet": "^6.0.0",
     "koa-router": "^10.0.0",
+    "koa-simple-ratelimit": "^5.1.1",
+    "redis": "^3.1.2",
     "telegraf": "^3.38.0"
   },
   "prettier": {

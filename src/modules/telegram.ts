@@ -6,8 +6,12 @@ import { env } from '../config';
 export const bot = new Telegraf<TelegrafContext>(process.env.TOKEN);
 
 export const sendMessage = async (text: string): Promise<void> => {
-  // @ts-ignore
-  await bot.telegram.sendMessage(parseInt(env.CHANNEL), text, {
-    parse_mode: 'HTML',
-  });
+  await bot.telegram
+    // @ts-ignore
+    .sendMessage(parseInt(env.CHANNEL), text, {
+      parse_mode: 'HTML',
+    })
+    .then((message) => {
+      return message.message_id;
+    });
 };

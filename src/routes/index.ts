@@ -157,7 +157,7 @@ router.get('/confession/:message', async (ctx) => {
   const { message } = ctx.params;
   try {
     await sendMessage(message);
-    ctx.body = { message: 'success' };
+    ctx.body = { status: 'sent', message: message };
   } catch (e) {
     ctx.status = 404;
     ctx.body = {
