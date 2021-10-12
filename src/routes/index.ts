@@ -163,7 +163,7 @@ router.get('/confession', async (ctx) => {
 
 router.get('/confession/text', async (ctx) => {
   ctx.body = {
-    message: 'enter 32+ characters long message to query',
+    message: 'enter 32+ characters long message to param',
   };
 });
 
