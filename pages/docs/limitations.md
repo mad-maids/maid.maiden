@@ -20,4 +20,4 @@ its our users convenience!
 
 - **Limits:** 100k requests every day
 - **Memory:** 512 mb
-- **Interval:** 50ms (a minute)
+- **Interval:** 50ms (in a blink of an eye)
