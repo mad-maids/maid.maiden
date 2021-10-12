@@ -4,7 +4,6 @@ import helmet from 'koa-helmet';
 import cors from '@koa/cors';
 import chalk from 'chalk';
 
-import { bot } from './modules/telegram';
 import router from './routes';
 
 (async () => {
@@ -14,13 +13,6 @@ import router from './routes';
   app.use(koaBody());
   app.use(helmet());
   app.use(cors());
-
-  app.use((ctx, next) =>
-    ctx.method === 'POST' || ctx.url === '/telegram'
-      ? // @ts-ignore
-        bot.handleUpdate(ctx.request.body, ctx.response)
-      : next(),
-  );
 
   app.use(router.routes());
 
