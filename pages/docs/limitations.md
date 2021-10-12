@@ -10,13 +10,13 @@ Due to our low scalability, we have some restrictions to our servers. However,
 as soon as we will get better servers and deploy, we will change our quotas for
 its our users convenience!
 
-### Node <samp>api.n</samp>
+### Node <samp>api.n</samp> `[public devs]`
 
 - **Limits:** 100 requests
 - **Memory:** 512 mb
 - **Interval:** 60000ms (a minute)
 
-### Deno <samp>api.d</samp>
+### Deno <samp>api.d</samp> `[maid devs only]`
 
 - **Limits:** 100k requests
 - **Memory:** 512 mb
