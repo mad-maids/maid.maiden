@@ -6,6 +6,7 @@ import {
   getIntranet,
   getGroups,
 } from '../modules/filesystem';
+import { sendMessage } from '../modules/telegram';
 
 const router = new Router();
 
@@ -149,6 +150,19 @@ router.get('/intranet/:type/:id', async (ctx) => {
   } catch (e) {
     ctx.status = 404;
     ctx.body = { error: e.message };
+  }
+});
+
+router.get('/confession/:message', async (ctx) => {
+  const { message } = ctx.params;
+  try {
+    await sendMessage(message);
+    ctx.body = { message: 'success' };
+  } catch (e) {
+    ctx.status = 404;
+    ctx.body = {
+      error: e.message,
+    };
   }
 });
 
