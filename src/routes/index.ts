@@ -6,7 +6,7 @@ import {
   getIntranet,
   getGroups,
 } from '../modules/filesystem';
-import { sendMessage } from '../modules/telegram';
+import { sendMessage, sendPicture } from '../modules/telegram';
 
 const router = new Router();
 
@@ -153,11 +153,24 @@ router.get('/intranet/:type/:id', async (ctx) => {
   }
 });
 
-router.get('/confession/:message', async (ctx) => {
+router.get('/confession/text/:content', async (ctx) => {
   const { message } = ctx.params;
   try {
     await sendMessage(message);
     ctx.body = { status: 'sent', message: message };
+  } catch (e) {
+    ctx.status = 404;
+    ctx.body = {
+      error: e.message,
+    };
+  }
+});
+
+router.post('/confession/image', async (ctx) => {
+  const { type, content } = ctx.body;
+  try {
+    await sendPicture(type, content);
+    ctx.body = { status: 'sent' };
   } catch (e) {
     ctx.status = 404;
     ctx.body = {

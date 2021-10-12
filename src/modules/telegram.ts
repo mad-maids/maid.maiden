@@ -1,66 +1,56 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import { channel, token } from '../config';
-import { Telegraf, Composer, Scenes, session } from 'telegraf';
+import { Telegraf } from 'telegraf';
 
-interface Session extends Scenes.WizardSessionData {
-  messages: string[];
-  photos: string[];
-}
-
-type User = Scenes.WizardContext<Session>;
-
-const stepHandler = new Composer<User>();
-stepHandler.command('next', async (ctx) => {
-  await ctx.reply('Step 2. Via command');
-  return ctx.wizard.next();
-});
-stepHandler.use((ctx) =>
-  ctx.replyWithMarkdown('Press `Next` button or type /next'),
-);
-stepHandler.on('text', async (ctx) => {
-  ctx.scene.session.messages.push(ctx.message.text);
-});
-
-const wizard = new Scenes.WizardScene(
-  'wizard',
-  async (ctx) => {
-    await ctx.reply('Step 1');
-    console.log(typeof ctx.scene.session.messages)
-    return ctx.wizard.next();
-  },
-  stepHandler,
-  async (ctx) => {
-    const responseText = [
-      'Step 3.',
-      `Your messages are ${ctx.scene.session.messages.join(' ')}`,
-    ].join('\n');
-    await ctx.reply(responseText);
-    return ctx.wizard.next();
-  },
-  async (ctx) => {
-    await ctx.reply('Step 4');
-    return ctx.wizard.next();
-  },
-  async (ctx) => {
-    await ctx.reply('Done');
-    return await ctx.scene.leave();
-  },
-);
-
-const bot = new Telegraf<User>(token);
-const stage = new Scenes.Stage<User>([wizard], {
-  default: 'wizard',
-});
-bot.use(session());
-bot.use(stage.middleware());
+const bot = new Telegraf(token);
 
 export const sendMessage = async (text: string): Promise<void> => {
-  await bot.telegram
+  if (text.length < 32) await bot.telegram
     .sendMessage(parseInt(channel), text, {
       parse_mode: 'HTML',
     })
     .then((message) => {
       return message.message_id;
     });
+  else throw Error("Message should be more than 32 characters long!")
+};
+
+export const sendPicture = async (
+  type: 'buffer' | 'url' | 'animation',
+  content: string,
+  message?: string,
+): Promise<void> => {
+  switch (type) {
+    case 'buffer':
+      await bot.telegram.sendPhoto(
+        parseInt(channel),
+        { source: content },
+        { caption: message, parse_mode: 'HTML' },
+      );
+      break;
+    case 'url':
+      await bot.telegram.sendPhoto(
+        parseInt(channel),
+        { url: content },
+        {
+          caption: message,
+          parse_mode: 'HTML',
+        },
+      );
+      break;
+    case 'animation':
+      await bot.telegram.sendAnimation(
+        parseInt(channel),
+        { url: content },
+        {
+          caption: message,
+          parse_mode: 'HTML',
+        },
+      );
+      break
+    default:
+      throw Error("Content type not specified")
+  }
 };
 
 export default bot;
