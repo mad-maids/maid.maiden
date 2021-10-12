@@ -1,9 +1,12 @@
 import { Telegraf } from 'telegraf';
-import { TelegrafContext } from 'telegraf/typings/context';
 import { env } from '../config';
 
 // @ts-ignore
-export const bot = new Telegraf<TelegrafContext>(process.env.TOKEN);
+const bot = new Telegraf(process.env.TOKEN);
+
+bot.start(async (ctx) => {
+  await ctx.replyWithHTML('Hello!')
+})
 
 export const sendMessage = async (text: string): Promise<void> => {
   await bot.telegram
@@ -15,3 +18,5 @@ export const sendMessage = async (text: string): Promise<void> => {
       return message.message_id;
     });
 };
+
+export default bot
