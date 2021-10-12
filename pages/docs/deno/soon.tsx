@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 export default function Artworks() {
   return (
@@ -10,7 +10,7 @@ export default function Artworks() {
         Under maintenance!
       </h3>
     </div>
-  )
+  );
 }
 
 Artworks.meta = {
@@ -18,4 +18,4 @@ Artworks.meta = {
   author: "UwUssimo",
   date: "2020-10-20",
   editable: false,
-}
+};

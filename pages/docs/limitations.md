@@ -1,68 +1,23 @@
 ---
-title: Get Started
+title: Limitations
 authors:
-  - ije
-  - razermoon
+  - uwussimo
 ---
 
-# Get Started
+# Limitations
 
-Welcome to use **Aleph.js**!
+Due to our low scalability, we have some restrictions to our servers. However,
+as soon as we will get better servers and deploy, we will change our quotas for
+its our users convenience!
 
-If you are new to Aleph.js you should check out the [About](/docs/) page.
+### Node <samp>api.n</samp>
 
-## Installation
+- **Limits:** 100 requests
+- **Memory:** 512 mb
+- **Interval:** 60000ms (a minute)
 
-you will need [Deno](https://deno.land/#installation) **1.13+** to run Aleph.js
-server.
+### Deno <samp>api.d</samp>
 
-```bash
-$ deno run -A https://deno.land/x/aleph/install.ts
-```
-
-or use [land](https://deno.land/x/land) without installation:
-
-```bash
-$ land aleph
-```
-
-## Usage
-
-**Create a new app**:
-
-```bash
-$ aleph init
-```
-
-**Start the app in `development` mode**:
-
-```bash
-$ aleph dev
-```
-
-**Start the app in `production` mode**:
-
-```bash
-$ aleph start
-```
-
-The application will start at http://localhost:8080 by default.
-<br> The default port can be changed with `-p` (or `--port`) flag.
-
-**Build the app to a static site (SSG)**:
-
-```bash
-$ aleph build
-```
-
-This will export a static site to the `output` directory, which can be run
-standalone on any server.
-
-> See the [hello-world](https://alephjs-hello-world.vercel.app/) example on
-> [Vercel](https://vercel.com).
-
-**More usages**:
-
-```bash
-$ aleph -h
-```
+- **Limits:** 100k requests
+- **Memory:** 512 mb
+- **Interval:** 50ms (a minute)

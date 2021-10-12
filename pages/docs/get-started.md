@@ -1,8 +1,7 @@
 ---
 title: Get Started
 authors:
-  - ije
-  - razermoon
+  - uwussimi
 ---
 
 # Get Started

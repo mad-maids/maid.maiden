@@ -1,11 +1,10 @@
 ---
-title: About Aleph.js
+title: About Maiden
 authors:
-  - ije
-  - razermoon
+  - uwussimo
 ---
 
-# Aleph.js
+# Maiden
 
 **Aleph.js** (or **Aleph** or **א** or **阿莱夫**, <samp>ˈɑːlɛf</samp>) is a
 fullstack framework in [Deno], inspired by [Next.js].

@@ -4,26 +4,26 @@ import React, {
   useEffect,
   useMemo,
   useState,
-} from "react"
-import { useRouter } from "aleph/react"
-import util from "aleph/shared/util.ts"
-import hljs from "highlight"
-import bash from "highlight-languages/bash"
-import javascript from "highlight-languages/javascript"
-import json from "highlight-languages/json"
-import typescript from "highlight-languages/typescript"
-import xml from "highlight-languages/xml"
-import Logo from "../components/Logo.tsx"
+} from "react";
+import { useRouter } from "aleph/react";
+import util from "aleph/shared/util.ts";
+import hljs from "highlight";
+import bash from "highlight-languages/bash";
+import javascript from "highlight-languages/javascript";
+import json from "highlight-languages/json";
+import typescript from "highlight-languages/typescript";
+import xml from "highlight-languages/xml";
+import Logo from "../components/Logo.tsx";
 
-hljs.registerLanguage("json", json)
-hljs.registerLanguage("javascript", javascript)
-hljs.registerLanguage("typescript", typescript)
-hljs.registerLanguage("xml", xml)
-hljs.registerLanguage("bash", bash)
+hljs.registerLanguage("json", json);
+hljs.registerLanguage("javascript", javascript);
+hljs.registerLanguage("typescript", typescript);
+hljs.registerLanguage("xml", xml);
+hljs.registerLanguage("bash", bash);
 
-const description = "The Documentation for Maiden"
+const description = "The Documentation for Maiden";
 const ogImage = "https://og-serverless-git-master-darkristy.vercel.app/og.jpg" +
-  "?title=API%20for%20educational%20purposes!&author=Mad%20Maids&website=api.maid.uz&handle=@uwussimo&image=https://genemator.uz/gifs/cm.gif"
+  "?title=API%20for%20educational%20purposes!&author=Mad%20Maids&website=api.maid.uz&handle=@uwussimo&image=https://genemator.uz/gifs/cm.gif";
 const navMenu = [
   {
     name: "Documentation",
@@ -33,7 +33,7 @@ const navMenu = [
         path: "/docs",
       },
       { title: "Get Started", path: "/docs/get-started" },
-      { title: "Limitations", path: "/docs/limitatoins" },
+      { title: "Limitations", path: "/docs/limitations" },
     ],
   },
   {
@@ -58,140 +58,140 @@ const navMenu = [
       },
     ],
   },
-]
+];
 
 interface Metadata {
-  title: string
-  authors: string[]
-  keywords?: string[]
-  editable?: boolean
+  title: string;
+  authors: string[];
+  keywords?: string[];
+  editable?: boolean;
 }
 
 export default function Docs(
   { Page }: { Page?: ComponentType<any> & { meta: Metadata } },
 ) {
-  const { pathname: currentPath, routePath } = useRouter()
+  const { pathname: currentPath, routePath } = useRouter();
   const [extended, setExtended] = useState(
     navMenu.map((m) => m.items).flat().filter((item) => item.submenu).reduce(
       (m, item) => {
-        m[item.path] = routePath.startsWith(item.path)
-        return m
+        m[item.path] = routePath.startsWith(item.path);
+        return m;
       },
       {} as Record<string, boolean>,
     ),
-  )
-  const [menuIsOpen, setMenuIsOpen] = useState(false)
-  const [searchWords, setSearchWords] = useState("")
+  );
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const [searchWords, setSearchWords] = useState("");
   const navLinks = useMemo<[[string, string] | null, [string, string] | null]>(
     () => {
-      const all: [string, string][] = []
+      const all: [string, string][] = [];
       navMenu.forEach((g) =>
         g.items.forEach((item) => {
           if (item.submenu) {
             item.submenu.forEach(({ title, path }) => {
-              all.push([title, item.path + (path === "/" ? "" : path)])
-            })
+              all.push([title, item.path + (path === "/" ? "" : path)]);
+            });
           } else {
-            all.push([item.title, item.path])
+            all.push([item.title, item.path]);
           }
         })
-      )
-      const index = all.findIndex(([_, path]) => path === currentPath)
-      return [all[index - 1] || null, all[index + 1] || null]
+      );
+      const index = all.findIndex(([_, path]) => path === currentPath);
+      return [all[index - 1] || null, all[index + 1] || null];
     },
     [currentPath],
-  )
+  );
   const editUrl = useMemo(() => {
     const md = routePath === "/docs"
       ? routePath + "/index.md"
-      : routePath + ".md"
-    return "https://github.com/mad-maids/maid.maiden/edit/main/pages" + md
-  }, [routePath])
+      : routePath + ".md";
+    return "https://github.com/mad-maids/maid.maiden/edit/main/pages" + md;
+  }, [routePath]);
   const title = [
     Page?.meta.title,
     !Page?.meta.title.endsWith("Maiden") && "Maiden",
-  ].filter(Boolean).join(" - ")
+  ].filter(Boolean).join(" - ");
   const filteredNavMenu = useMemo(() => {
     if (searchWords === "") {
-      return navMenu
+      return navMenu;
     }
     return navMenu.map((g) => {
       const includes = (item: any) =>
-        item.title.toLowerCase().includes(searchWords)
+        item.title.toLowerCase().includes(searchWords);
       return {
         ...g,
         items: g.items.filter((item) => {
-          return includes(item) || item.submenu?.some(includes)
+          return includes(item) || item.submenu?.some(includes);
         }).map((item) => ({
           ...item,
           submenu: item.submenu?.filter((subItem) =>
             includes(item) || includes(subItem)
           ),
         })),
-      }
-    }).filter((g) => g.items.length > 0)
-  }, [searchWords])
+      };
+    }).filter((g) => g.items.length > 0);
+  }, [searchWords]);
 
   useEffect(() => {
     setExtended(
       navMenu.map((m) => m.items).flat().filter((item) => item.submenu).reduce(
         (m, item) => {
-          m[item.path] = routePath.startsWith(item.path)
-          return m
+          m[item.path] = routePath.startsWith(item.path);
+          return m;
         },
         {} as Record<string, boolean>,
       ),
-    )
+    );
     document.querySelectorAll(".docs .content pre > code").forEach((block) => {
       if (block.className.includes("language-")) {
-        hljs.highlightElement(block)
+        hljs.highlightElement(block);
       }
       if (block.className.includes("language-bash")) {
         for (let i = 0; i < block.childNodes.length; i++) {
-          const child = block.childNodes[i]
+          const child = block.childNodes[i];
           if (child.nodeName === "#text") {
-            const text = child.textContent!
+            const text = child.textContent!;
             if (text == "$ ") {
-              block.insertBefore(bashPromptSpan(), child)
-              block.removeChild(child)
+              block.insertBefore(bashPromptSpan(), child);
+              block.removeChild(child);
             } else {
-              const texts = text.split("\n$ ")
-              const n = texts.length
+              const texts = text.split("\n$ ");
+              const n = texts.length;
               if (n > 1) {
                 for (let j = 0; j < n; j++) {
-                  const t = texts[j]
+                  const t = texts[j];
                   if (t) {
-                    const node = document.createTextNode(t + "\n")
-                    block.insertBefore(node, child)
+                    const node = document.createTextNode(t + "\n");
+                    block.insertBefore(node, child);
                   } else if (j == 0) {
-                    const node = document.createTextNode("\n")
-                    block.insertBefore(node, child)
+                    const node = document.createTextNode("\n");
+                    block.insertBefore(node, child);
                   }
                   if (j > 0) {
-                    block.insertBefore(bashPromptSpan(), child)
+                    block.insertBefore(bashPromptSpan(), child);
                   }
                 }
-                block.removeChild(child)
+                block.removeChild(child);
               }
             }
           }
         }
       }
-    })
+    });
     document.querySelectorAll(".docs .content video").forEach((block) => {
-      const v = block as HTMLVideoElement
-      v.className = "is-paused"
+      const v = block as HTMLVideoElement;
+      v.className = "is-paused";
       v.addEventListener("click", () => {
         if (v.paused) {
-          v.play()
+          v.play();
         } else {
-          v.requestFullscreen()
+          v.requestFullscreen();
         }
-      })
-      v.addEventListener("playing", () => v.className = "is-playing")
-      v.addEventListener("pause", () => v.className = "is-paused")
-    })
-  }, [routePath])
+      });
+      v.addEventListener("playing", () => v.className = "is-playing");
+      v.addEventListener("pause", () => v.className = "is-paused");
+    });
+  }, [routePath]);
 
   return (
     <div
@@ -258,8 +258,8 @@ export default function Docs(
                               : "close"}
                             onClick={() =>
                               setExtended((extended) => {
-                                extended[item.path] = !extended[item.path]
-                                return { ...extended }
+                                extended[item.path] = !extended[item.path];
+                                return { ...extended };
                               })}
                           >
                             <svg
@@ -294,7 +294,7 @@ export default function Docs(
                             </li>
                           ))}
                       </Fragment>
-                    )
+                    );
                   } else {
                     return (
                       <li key={item.title + item.path}>
@@ -310,7 +310,7 @@ export default function Docs(
                           {item.modifier}
                         </a>
                       </li>
-                    )
+                    );
                   }
                 })}
               </ul>
@@ -394,12 +394,12 @@ export default function Docs(
           <div className="bottom-space" />}
       </div>
     </div>
-  )
+  );
 }
 
 function bashPromptSpan(prompt: string = "$") {
-  const span = document.createElement("span")
-  span.className = "bash_prompt"
-  span.innerText = prompt + " "
-  return span
+  const span = document.createElement("span");
+  span.className = "bash_prompt";
+  span.innerText = prompt + " ";
+  return span;
 }
