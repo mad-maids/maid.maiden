@@ -154,10 +154,10 @@ router.get('/intranet/:type/:id', async (ctx) => {
 });
 
 router.get('/confession/text/:content', async (ctx) => {
-  const { message } = ctx.params;
+  const { content } = ctx.params;
   try {
-    await sendMessage(message);
-    ctx.body = { status: 'sent', message: message };
+    await sendMessage(content);
+    ctx.body = { status: 'sent', message: content };
   } catch (e) {
     ctx.status = 404;
     ctx.body = {
