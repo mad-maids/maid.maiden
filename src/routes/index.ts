@@ -12,8 +12,9 @@ const router = new Router();
 
 router.get('/', async (ctx) => {
   ctx.body = {
-    intranet: 'http://api.n.maid.uz/intranet',
-    timetable: 'http://api.n.maid.uz/timetable',
+    intranet: '/intranet',
+    timetable: '/timetable',
+    confession: '/confession',
   };
 });
 
@@ -153,6 +154,19 @@ router.get('/intranet/:type/:id', async (ctx) => {
   }
 });
 
+router.get('/confession', async (ctx) => {
+  ctx.body = {
+    text: '32+ characters long message',
+    image: '{type} and {content} as body',
+  };
+});
+
+router.get('/confession/text', async (ctx) => {
+  ctx.body = {
+    message: 'enter 32+ characters long message to query',
+  };
+});
+
 router.get('/confession/text/:content', async (ctx) => {
   const { content } = ctx.params;
   try {
@@ -166,11 +180,15 @@ router.get('/confession/text/:content', async (ctx) => {
   }
 });
 
-router.post('/confession/image', async (ctx) => {
-  const { type, content } = ctx.body;
+router.get('/confession/image', async (ctx) => {
+  const { content, message } = ctx.headers;
   try {
-    await sendPicture(type, content);
-    ctx.body = { status: 'sent' };
+    if (content) {
+      // @ts-ignore
+      await sendPicture(content, message);
+      ctx.body = { status: 'sent' };
+    }
+    else ctx.body = { message: "content not specified" }
   } catch (e) {
     ctx.status = 404;
     ctx.body = {
