@@ -12,12 +12,12 @@ its our users convenience!
 
 ### Node <samp>api.n</samp> `[public devs]`
 
-- **Limits:** 100 requests
+- **Limits:** 100 requests in each interval
 - **Memory:** 512 mb
 - **Interval:** 60000ms (a minute)
 
 ### Deno <samp>api.d</samp> `[maid devs only]`
 
-- **Limits:** 100k requests
+- **Limits:** 100k requests every day
 - **Memory:** 512 mb
 - **Interval:** 50ms (a minute)
