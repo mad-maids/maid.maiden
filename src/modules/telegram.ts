@@ -4,25 +4,25 @@ import { Telegraf, Scenes, session, Composer, Context } from 'telegraf';
 const bot = new Telegraf(token);
 
 interface WizardSession extends Scenes.WizardSessionData {
-  message: string[],
+  messages: string[],
   photos: string[]
 }
 
-interface WizardContext extends Context {
-  scene: Scenes.SceneContextScene<WizardContext, WizardSession>
-  wizard: Scenes.WizardContextWizard<WizardContext>
+interface User extends Context {
+  scene: Scenes.SceneContextScene<User, WizardSession>
+  wizard: Scenes.WizardContextWizard<User>
 }
 
-const messageHandler = new Composer<WizardContext>();
-messageHandler.on('text', async (ctx) => {
-  ctx.scene.session.message.push(ctx.message.text)
-})
+const messageHandler = new Composer<User>();
 messageHandler.command('next', async (ctx) => {
   await ctx.reply('Noice!');
   return ctx.wizard.next();
 });
+messageHandler.on('text', (ctx) => {
+    ctx.scene.session.messages.push(ctx.message.text)
+})
 messageHandler.use((ctx) =>
-  ctx.replyWithMarkdown('Press `Next` button or type /next when you\'re done!' ),
+    ctx.replyWithMarkdown('Press `Next` button or type /next when you\'re done!' ),
 );
 
 const wizard = new Scenes.WizardScene(
@@ -44,14 +44,14 @@ const wizard = new Scenes.WizardScene(
   },
   async (ctx) => {
     await ctx.reply('Done');
-    for (const message of ctx.scene.session.message) {
+    for (const message of ctx.scene.session.messages) {
       await ctx.reply(message)
     }
     return await ctx.scene.leave();
   },
 );
 
-const stage = new Scenes.Stage<WizardContext>([wizard], {
+const stage = new Scenes.Stage<User>([wizard], {
   default: 'wizard',
 });
 bot.use(session());
