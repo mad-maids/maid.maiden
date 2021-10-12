@@ -1,10 +1,10 @@
 ---
-title: Config
+title: Intranet
 authors:
-  - ije
+  - uwussimo
 ---
 
-# Config
+# Intranet
 
 For custom advanced behavior of Aleph.js, add an `aleph.config.ts` file in the
 root of your project directory.

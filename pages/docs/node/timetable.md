@@ -1,10 +1,10 @@
 ---
-title: Framework API
+title: Timetable
 authors:
-  - ije
+  - uwussimo
 ---
 
-# Framework API
+# Timetable
 
 ### `dynamic` <samp>hoc</samp>
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 export default function Artworks() {
   return (
@@ -7,22 +7,15 @@ export default function Artworks() {
         <img className="md" src="/logo.svg" />
       </p>
       <h3>
-        Logo (main) <a href="/logo.svg" target="_blank">- Download</a>
-      </h3>
-      <div className="space lg" />
-      <p>
-        <img src="/logo_filled_frame.png" />
-      </p>
-      <h3>
-        Logo (filled) <a href="/logo_filled.png" target="_blank">- Download</a>
+        Under maintenance!
       </h3>
     </div>
-  );
+  )
 }
 
 Artworks.meta = {
-  title: "Artworks",
-  author: "The Aleph.js Authors",
+  title: "Deno",
+  author: "UwUssimo",
   date: "2020-10-20",
   editable: false,
-};
+}

@@ -1,10 +1,10 @@
 ---
-title: Plugin API
+title: Confession
 authors:
-  - ije
+  - uwussimo
 ---
 
-# Plugin API
+# Confession
 
 In Aleph.js, a **Plugin** is an object with a `name` and a `setup` method. The
 `setup` method will be invoked once before the Aleph server runtime is
