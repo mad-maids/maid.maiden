@@ -106,3 +106,4 @@ dist
 # Macos files
 .DS_Store
 .idea
+.aleph
