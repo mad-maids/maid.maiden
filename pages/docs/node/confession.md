@@ -35,7 +35,15 @@ Send message to the channel anonymously.
 
 - **Url:** `/confession/image`
 - **Type:** `POST`
-- **Required:** body of `type: "buffer", "url", "animation"` ||
-  `content: Buffer, URL<Photo, Animation>`
+- **Required:** `content: URL | FileID`, `message: string` as headers
 
 Send photo to the channel anonymously.
+
+**@returns: `/confession/image/` headers: content=https://image.com/example
+message=Hello World**
+
+```json
+{
+  "status": "sent"
+}
+```
