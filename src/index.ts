@@ -8,7 +8,7 @@ import router from './routes';
 import { ratelimit } from 'koa-simple-ratelimit';
 import bot from './modules/telegram';
 import safeCompare from 'safe-compare';
-import { redis_url } from "./config";
+import { redis_url } from './config';
 
 (async () => {
   const app = new Koa();

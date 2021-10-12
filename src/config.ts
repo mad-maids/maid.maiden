@@ -1,7 +1,7 @@
 import path from 'path';
 
 // Rate Limit
-export const redis_url = process.env.REDIS_URL
+export const redis_url = process.env.REDIS_URL;
 
 // Telegram Bot
 export const channel = process.env.CHANNEL || '-1001785784747';
