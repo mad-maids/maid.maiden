@@ -9,9 +9,6 @@ interface Session extends Scenes.WizardSessionData {
 type User = Scenes.WizardContext<Session>;
 
 const stepHandler = new Composer<User>();
-stepHandler.on('text', async (ctx) => {
-  ctx.scene.session.messages.push(ctx.message.text);
-});
 stepHandler.action('next', async (ctx) => {
   await ctx.reply('Step 2. Via inline button');
   return ctx.wizard.next();
@@ -23,6 +20,9 @@ stepHandler.command('next', async (ctx) => {
 stepHandler.use((ctx) =>
   ctx.replyWithMarkdown('Press `Next` button or type /next'),
 );
+stepHandler.on('text', async (ctx) => {
+  ctx.scene.session.messages.push(ctx.message.text);
+});
 
 const wizard = new Scenes.WizardScene(
   'wizard',
