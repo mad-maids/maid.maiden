@@ -23,14 +23,10 @@ export const sendPicture = async (
   message?: string | undefined,
 ): Promise<void> => {
   if (content) {
-    await bot.telegram.sendPhoto(
-      parseInt(channel),
-      content,
-      {
-        caption: message,
-        parse_mode: 'HTML',
-      },
-    );
+    await bot.telegram.sendPhoto(parseInt(channel), content, {
+      caption: message,
+      parse_mode: 'HTML',
+    });
   } else throw Error('Content is not specified');
 };
 

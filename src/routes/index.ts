@@ -187,8 +187,7 @@ router.get('/confession/image', async (ctx) => {
       // @ts-ignore
       await sendPicture(content, message);
       ctx.body = { status: 'sent' };
-    }
-    else ctx.body = { message: "content not specified" }
+    } else ctx.body = { message: 'content not specified' };
   } catch (e) {
     ctx.status = 404;
     ctx.body = {
