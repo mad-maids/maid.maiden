@@ -1,1 +1,1 @@
-deno run --allow-all --config ./deno.json --unstable ./main.ts
+deno run --allow-env --allow-read --allow-net --config ./deno.json --watch --unstable ./main.ts
