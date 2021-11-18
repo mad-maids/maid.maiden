@@ -1,7 +1,7 @@
 import { bold, yellow } from "./deps.ts";
 import { Application } from "./deps.ts";
 
-import Router from "./routes/router";
+import Router from "./routes/mod.ts";
 import Response from "./utils/response.ts";
 import Error from "./utils/error.ts";
 import NotFound from "./utils/notfound.ts";
