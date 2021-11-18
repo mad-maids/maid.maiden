@@ -1,4 +1,4 @@
-import { Router } from "https://deno.land/x/oak/mod.ts";
+import { Context, Router } from "@/deps.ts";
 
 const router = new Router();
 
@@ -9,8 +9,6 @@ router
     };
   })
   .get("/something/:id", (ctx) => {
-    const path = ctx.params.id;
-    const jsonFile = Deno.readTextFileSync("data.json");
     ctx.response.body = {
       message: "Something",
     };

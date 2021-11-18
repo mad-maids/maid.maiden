@@ -1,4 +1,4 @@
-import { Context, Status } from "./deps.ts";
+import { Context, Status } from "../deps.ts";
 
 export default (context: Context) => {
   context.response.status = Status.NotFound;

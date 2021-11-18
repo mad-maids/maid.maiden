@@ -1,4 +1,4 @@
-import { bold, Context, cyan, green } from "./deps.ts";
+import { bold, Context, cyan, green } from "../deps.ts";
 
 export default async (context: Context, next: any) => {
   await next();

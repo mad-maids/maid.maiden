@@ -1,11 +1,11 @@
-import { bold, cyan, green, yellow } from "./deps.ts";
-import { Application, Context, isHttpError, Status } from "./deps.ts";
+import { bold, yellow } from "./deps.ts";
+import { Application } from "./deps.ts";
 
-import Router from "./router.ts";
-import Response from "./response.ts";
-import Error from "./error.ts";
-import NotFound from "./notfound.ts";
-import Logger from "./logger.ts";
+import Router from "./routes/router";
+import Response from "./utils/response.ts";
+import Error from "./utils/error.ts";
+import NotFound from "./utils/notfound.ts";
+import Logger from "./utils/logger.ts";
 
 const app = new Application();
 
@@ -14,8 +14,8 @@ app.use(async (context, next) => await Logger(context, next));
 app.use(async (context, next) => await Response(context, next));
 app.use(async (context, next) => await Error(context, next));
 
-await app.use(Router.routes());
-await app.use(Router.allowedMethods());
+app.use(Router.routes());
+app.use(Router.allowedMethods());
 
 // A basic 404 page
 app.use(NotFound);

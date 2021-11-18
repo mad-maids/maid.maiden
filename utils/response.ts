@@ -1,4 +1,4 @@
-import { Context } from "./deps.ts";
+import { Context } from "../deps.ts";
 export default async (context: Context, next: any) => {
   const start = Date.now();
   await next();
