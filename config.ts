@@ -13,6 +13,6 @@ export const token = Deno.env.get("TOKEN") ||
 
 // API Assets
 export const timetableDirectory = (type: string) =>
-  path.join(__dirname, "../assets/timetable", type);
+  path.join(__dirname, "./assets/timetable", type);
 export const intranetDirectory = (type: string) =>
-  path.join(__dirname, "../assets/intranet", type);
+  path.join(__dirname, "./assets/intranet", type);
