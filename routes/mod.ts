@@ -3,12 +3,12 @@ import { Context, Router } from "../deps.ts";
 const router = new Router();
 
 router
-  .get("/", (ctx) => {
+  .get("/", (ctx: Context) => {
     ctx.response.body = {
       message: "Hello",
     };
   })
-  .get("/something/:id", (ctx) => {
+  .get("/something/:id", (ctx: Context) => {
     ctx.response.body = {
       message: "Something",
     };

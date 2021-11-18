@@ -1,1 +1,1 @@
-deno run --allow-all --config ./deno.json ./main.ts
+deno run --allow-all --config ./deno.json --unstable ./main.ts
