@@ -37,10 +37,9 @@ export async function getAvailableTimetables(
   const exists = existsSync(timetableDirectory(type));
   if (!exists) throw new Error(`Type ${type} not found`);
 
-  const entities = await Deno.readDir(timetableDirectory(type));
+  const entities = await fs.readdir(timetableDirectory(type));
   for (const entity in entities) {
-    // @ts-ignore
-    entities[entity] = entities[entity] // .replace(".json", "");
+    entities[entity] = entities[entity].replace(".json", "");
   }
 
   await cache.set(`timetable-${type}`, entities);
@@ -49,7 +48,6 @@ export async function getAvailableTimetables(
     green(`(${type})`),
     "Added to the cache",
   );
-  // @ts-ignore
   return entities;
 }
 
