@@ -1,9 +1,7 @@
 import { Context, Router } from "../deps.ts";
 import {
     getAvailableTimetables,
-    getAvailableIntranet,
     getTimetable,
-    getIntranet,
     getGroups,
 } from "../utils/files.ts"
 const router = new Router();
