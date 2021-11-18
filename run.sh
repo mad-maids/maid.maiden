@@ -1,1 +1,1 @@
-deno run --allow-all
+deno run --allow-all ./main.ts
