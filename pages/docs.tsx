@@ -37,7 +37,13 @@ const navMenu = [
     ],
   },
   {
-    name: "Node (api.n)",
+    name: "Rust (api.r)",
+    items: [
+      { title: "Timetable", path: "/docs/rust/timetable" },
+    ],
+  },
+  {
+    name: "Node (api.n) [deprecated]",
     items: [
       { title: "Timetable", path: "/docs/node/timetable" },
       { title: "Intranet", path: "/docs/node/intranet" },
@@ -53,7 +59,7 @@ const navMenu = [
     ],
   },
   {
-    name: "Deno (api.d)",
+    name: "Deno (api.d) [deprecated]",
     items: [
       {
         title: "Coming soon...",
