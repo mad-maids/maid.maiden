@@ -11,7 +11,7 @@ applications using REST technologies.
 
 > Brought to you by Mad Maids
 
-Westminster has a cool intranet with its mobile application. However, it doesn't
+Westminster has an outdated intranet with its mobile application. However, it doesn't
 have api which can be used by third party applications made by students or some
 developer who wants to make our academic life more convenient and accessible.
 

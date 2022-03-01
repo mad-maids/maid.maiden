@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "lib": ["deno.ns", "dom"],
-    "jsx": "react"
+    "lib": ["deno.ns", "dom"]
   }
 }

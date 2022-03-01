@@ -37,7 +37,7 @@ const navMenu = [
     ],
   },
   {
-    name: "Rust (api.r)",
+    name: "Rust (api.r) [active]",
     items: [
       { title: "Timetable", path: "/docs/rust/timetable" },
     ],
@@ -62,7 +62,7 @@ const navMenu = [
     name: "Deno (api.d) [deprecated]",
     items: [
       {
-        title: "Coming soon...",
+        title: "Private closed...",
         modifier: (
           <span className="aleph-logo">
             <Logo />

@@ -7,7 +7,7 @@ export default function Artworks() {
         <img className="md" src="/logo.svg" />
       </p>
       <h3>
-        Under maintenance!
+        Deno API was developed privately for Maid's developers usage...
       </h3>
     </div>
   );
