@@ -1,4 +1,4 @@
-# Maiden
+# Mad Maiden
 
 Rest API server for educational purposes! A server which was built with Deno and
 Node. Documented and deployed with Aleph.js on Deno via Vercel
